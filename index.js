@@ -3,7 +3,7 @@ import app from "./app.js";
 const PORT = 3000;
 
 app.get("/", (req, res) => {
-  res.send("On");
+  res.render("index");
 });
 
 app.listen(PORT, () => {
