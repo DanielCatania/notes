@@ -16,6 +16,15 @@
   <main class="container">
     <h1>Notes</h1>
     <a href="/new-note">New Note</a>
+    <ul>
+      <% for (const note of notes) { %>
+        <li>
+          <a href="/note/<%= note.id %>">
+            <%= note.title%>
+          </a>
+        </li>
+        <% } %>
+    </ul>
   </main>
 
 </body>
