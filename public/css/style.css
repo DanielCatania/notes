@@ -1,3 +1,7 @@
 .container {
   margin-top: 1em !important;
 }
+
+.navbar {
+  max-width: 300px;
+}

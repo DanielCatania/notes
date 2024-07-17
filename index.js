@@ -87,6 +87,15 @@ app.post("/note/update/:id", async (req, res) => {
   }
 });
 
+app.get("/note/delete/:id", async (req, res) => {
+  try {
+    await Note.destroy({ where: { id: req.params.id } });
+    res.redirect("/");
+  } catch (error) {
+    res.redirect("/404");
+  }
+});
+
 app.get("/404", (req, res) => {
   res.send("Error 404: NOT FOUND");
 });

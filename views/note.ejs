@@ -16,14 +16,18 @@
 
 <body>
   <main class="container">
-    <a href="/">Home</a>
+    <nav class="navbar navbar-expand-primary">
+      <a href="/" class="btn btn-outline-primary">Home</a>
+      <a href="/note/edit/<%= note.id %>" class="btn btn-outline-success">Edit note</a>
+      <a href="/note/delete/<%= note.id %>" class="btn btn-outline-danger">Delete note</a>
+    </nav>
+
     <h1>
       <%= note.title %>
     </h1>
     <p>
       <%= note.description %>
     </p>
-    <a href="/note/edit/<%= note.id %>" class="btn btn-primary">Edit note</a>
   </main>
 </body>
 
