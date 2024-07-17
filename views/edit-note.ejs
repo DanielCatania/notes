@@ -16,9 +16,8 @@
 
 <body>
   <main class="container">
-    <a href="/">Home</a>
+    <a href="/note/<%= note.id %>" class="btn btn-outline-primary mb-2">Back</a>
     <form action="/note/update/<%= note.id %>" method="POST" class="bg-dark text-light p-3 rounded">
-      <a href="/note/<%= note.id %>">Back</a>
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
         <input type="text" name="title" class="form-control" value="<%= note.title %>" id="title">
