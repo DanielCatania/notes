@@ -26,13 +26,16 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.get("/new-note", (req, res) => {
+app.get("/note/new", (req, res) => {
   res.render("new-note");
 });
 
-app.post("/add-note", async (req, res) => {
+app.post("/note/add", async (req, res) => {
   try {
-    const noteData = req.body;
+    const noteData = {
+      title: req.body.title || "undefined",
+      description: req.body.description || "no content",
+    };
 
     const note = await Note.create(noteData);
     res.redirect(`/note/${note.id}`);
@@ -49,7 +52,36 @@ app.get("/note/:id", async (req, res) => {
       throw new Error("404");
     }
 
-    res.json(note);
+    res.render("note", { note });
+  } catch (error) {
+    res.redirect("/404");
+  }
+});
+
+app.get("/note/edit/:id", async (req, res) => {
+  try {
+    const note = await Note.findByPk(req.params.id);
+
+    if (note === null) {
+      throw new Error("404");
+    }
+
+    res.render("edit-note", { note });
+  } catch (error) {
+    res.redirect("/404");
+  }
+});
+
+app.post("/note/update/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const noteData = {
+      title: req.body.title || "undefined",
+      description: req.body.description || "no content",
+    };
+    await Note.update({ ...noteData }, { where: { id } });
+
+    res.redirect(`/note/${id}`);
   } catch (error) {
     res.redirect("/404");
   }

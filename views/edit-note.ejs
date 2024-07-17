@@ -9,24 +9,29 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/style.css">
 
-  <title>Notes</title>
+  <title>
+    Edit Note <%= note.title %>
+  </title>
 </head>
 
 <body>
   <main class="container">
-    <h1>Notes</h1>
-    <a href="/note/new">New Note</a>
-    <ul>
-      <% for (const note of notes) { %>
-        <li>
-          <a href="/note/<%= note.id %>">
-            <%= note.title%>
-          </a>
-        </li>
-        <% } %>
-    </ul>
+    <a href="/">Home</a>
+    <form action="/note/update/<%= note.id %>" method="POST" class="bg-dark text-light p-3 rounded">
+      <a href="/note/<%= note.id %>">Back</a>
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" name="title" class="form-control" value="<%= note.title %>" id="title">
+      </div>
+      <div class="mb-3">
+        <label for="Description" class="form-label">Description</label>
+        <textarea class="form-control" name="description" rows="10" id="Description"><%= note.description %></textarea>
+      </div>
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Atualizar</button>
+      </div>
+    </form>
   </main>
-
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
